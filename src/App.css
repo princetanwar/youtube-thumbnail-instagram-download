@@ -1,0 +1,11 @@
+.my-form {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.videoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
