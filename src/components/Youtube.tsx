@@ -6,10 +6,10 @@ import ImageGrid from "./ImageGrid";
 
 const Youtube = () => {
   const [url, setUrl] = useState("");
-  const [images, setImages] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [images, setImages] = useState<object | null>(null);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const sendReq = async (e) => {
+  const sendReq = async (e :  React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
     setErrorMsg(null);
     setImages(null);
@@ -17,7 +17,7 @@ const Youtube = () => {
       return setErrorMsg("Enter youtube Url");
     }
     const pars = nodeUrl.parse(url, true);
-    if ((pars.hostname !== "www.youtube.com") & (pars.hostname !== "youtu.be"))
+    if ((pars.hostname !== "www.youtube.com") && (pars.hostname !== "youtu.be"))
       return setErrorMsg("Not a youtube link");
 
     if (pars.hostname === "youtu.be") {

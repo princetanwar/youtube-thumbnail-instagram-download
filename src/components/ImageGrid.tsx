@@ -2,7 +2,10 @@ import React from "react";
 import { Row, Col } from "reactstrap";
 
 import Image from "./Image";
-const ImageGrid = (props) => {
+
+
+
+const ImageGrid = (props:any) => {
   const { high, low, max, medium } = props.images;
 
   return (

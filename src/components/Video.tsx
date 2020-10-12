@@ -1,6 +1,10 @@
 import React from "react";
 
-const Video = ({ videoLink }) => {
+interface Props{
+  videoLink : string
+}
+
+const Video = ({ videoLink } :Props) => {
   return (
     <div className="videoContainer">
       <video width="320" height="240" controls>

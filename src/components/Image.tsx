@@ -2,9 +2,11 @@ import React from "react";
 
 import { Card, CardImg } from "reactstrap";
 
-const Image = ({ qulity, imageLink, size }) => {
+interface Props { qulity:string, imageLink:string, size?:string }
+
+const Image = ({ qulity, imageLink, size } : Props) => {
   const imageStyle = size ? { height: 500, maxWidth: 450 } : { height: 320 };
-  const cardStyle = size ? { alignItems: "center" } : null;
+  const cardStyle = size ? { alignItems: "center" } : undefined;
   return (
     <>
       <Card style={cardStyle}>

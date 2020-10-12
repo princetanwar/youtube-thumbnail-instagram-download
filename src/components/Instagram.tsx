@@ -9,11 +9,11 @@ import Image from "./Image";
 import Video from "./Video";
 const Instagram = () => {
   const [url, setUrl] = useState("");
-  const [image, setImage] = useState(null);
-  const [video, setVideo] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [image, setImage] = useState<string | null | undefined>(null);
+  const [video, setVideo] = useState<string| null>(null);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const sendReq = async (e) => {
+  const sendReq = async (e :  React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
     setErrorMsg(null);
     setVideo(null);
