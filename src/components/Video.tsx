@@ -10,7 +10,7 @@ const Video = ({ videoLink }: Props) => {
     fetch(videoLink)
       .then((res) => res.blob())
       .then((blob) => setvideoBlob(URL.createObjectURL(blob)));
-  }, []);
+  }, [videoLink]);
   return (
     <a
       href={videoBlob}

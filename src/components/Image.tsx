@@ -18,7 +18,6 @@ const Image = ({ qulity, imageLink, size }: Props) => {
       fetch(imageLink)
         .then((res) => res.blob())
         .then((blob) => {
-          console.log(blob);
           setImageBlob(URL.createObjectURL(blob));
         });
     }
@@ -26,7 +25,7 @@ const Image = ({ qulity, imageLink, size }: Props) => {
 
   useEffect(() => {
     fetchImage();
-  }, []);
+  }, [imageLink]);
   return (
     <>
       <Card style={cardStyle}>

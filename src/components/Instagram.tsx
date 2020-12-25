@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import axios from "axios";
-import cheerio from "cheerio";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import nodeUrl from "url";
 
@@ -10,10 +9,10 @@ import Video from "./Video";
 const Instagram = () => {
   const [url, setUrl] = useState("");
   const [image, setImage] = useState<string | null | undefined>(null);
-  const [video, setVideo] = useState<string| null>(null);
+  const [video, setVideo] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const sendReq = async (e :  React.FormEvent<HTMLInputElement>) => {
+  const sendReq = async (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
     setErrorMsg(null);
     setVideo(null);
@@ -28,16 +27,13 @@ const Instagram = () => {
     if (pars.pathname === "/") return setErrorMsg("Enter full Instagram Link");
 
     try {
-      const html = await axios.get(`${url}`);
-      const $ = cheerio.load(html.data);
-      const videoString = $("meta[property='og:video']").attr("content");
-      const imageString = $("meta[property='og:image']").attr("content");
-      // console.log("video String", videoString);
-      // console.log("image String", imageString);
-      if (videoString) {
-        setVideo(videoString);
+      const res = await axios.get(
+        `https://www.instagram.com${pars.pathname}?__a=1`
+      );
+      if (res.data.graphql.shortcode_media.is_video) {
+        setVideo(res.data.graphql.shortcode_media.video_url);
       } else {
-        setImage(imageString);
+        setImage(res.data.graphql.shortcode_media.display_resources[2].src);
       }
     } catch (error) {
       console.log(error);
